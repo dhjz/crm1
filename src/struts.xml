@@ -4,6 +4,8 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-
+	<package name="crm1" extends="struts-default" namespace="/">
+		
+	</package>
 
 </struts>
