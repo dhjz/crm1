@@ -8,9 +8,9 @@
 	<session-factory>
 		<!-- 必须配置 -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql:///hibernate_day04</property>
+		<property name="hibernate.connection.url">jdbc:mysql://118.24.168.86:33060/hib1</property>
 		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password">root</property>
+		<property name="hibernate.connection.password">gmcc123$%^</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
 		<!-- 可选配置 -->
@@ -21,8 +21,8 @@
 		<!-- 配置C3P0的连接池 -->
 		<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
 
-		<!-- 映射配置文件 -->
-		<mapping resource="com/dhj/domain/Customer.hbm.xml" />
+		<!-- 映射配置文件 
+		<mapping resource="com/dhj/domain/Customer.hbm.xml" />-->
 	</session-factory>
 
 </hibernate-configuration>	

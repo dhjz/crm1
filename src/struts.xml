@@ -5,7 +5,7 @@
 
 <struts>
 	<package name="crm1" extends="struts-default" namespace="/">
-		
+		<action name="user_*" class="userAction" method="{1}"></action>
 	</package>
 
 </struts>

@@ -12,10 +12,20 @@ TD {
 	FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: 宋体
 }
 </STYLE>
-
+<script src="js/jquery-1.11.3.min.js"></script>
+<srcipt>
+	function checkCode(){
+		var user_id = $('#user_id').val();
+		var url = "${pageContext.request.contextPath}/user_checkCode.action";
+		var param = {"user_id":user_id};
+		$.post(url,param,function(data){
+			
+		});
+	}
+</srcipt>
 <META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
 <BODY>
-<FORM id=form1 name=form1 onsubmit="javascript:return WebForm_OnSubmit();" method=post>
+<FORM id=form1 name=form1 action="${pageContext.request.contextPath }/user_regist.action" onsubmit="javascript:return WebForm_OnSubmit();" method=post>
 
 <DIV id=UpdatePanel1>
 <DIV id=div1 
@@ -43,23 +53,31 @@ style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV
             <TABLE cellSpacing=0 cellPadding=2 border=0>
               <TBODY>
               <TR>
-                <TD style="HEIGHT: 28px" width=80>登 录 名：</TD>
+                <TD style="HEIGHT: 28px" width=80>姓名：</TD>
                 <TD style="HEIGHT: 28px" width=150><INPUT id=txtName 
-                  style="WIDTH: 130px" name=txtName></TD>
+                  style="WIDTH: 130px" name="user_name"></TD>
                 <TD style="HEIGHT: 28px" width=370><SPAN 
-                  id=RequiredFieldValidator3 
-                  style="FONT-WEIGHT: bold; VISIBILITY: hidden; COLOR: white">请输入登录名</SPAN></TD></TR>
+                  id="span_name" 
+                  style="FONT-WEIGHT: bold; display:none; COLOR: white">请输入姓名</SPAN></TD></TR>
+              <TR>
+              <TR>
+                <TD style="HEIGHT: 28px" width=80>用户名：</TD>
+                <TD style="HEIGHT: 28px" width=150><INPUT id="user_code"
+                  style="WIDTH: 130px" name="user_code" onblur="checkCode()"></TD>
+                <TD style="HEIGHT: 28px" width=370><SPAN 
+                  id="span_code" 
+                  style="FONT-WEIGHT: bold; display:none; COLOR: white">请输入登录名</SPAN></TD></TR>
               <TR>
                 <TD style="HEIGHT: 28px">登录密码：</TD>
                 <TD style="HEIGHT: 28px"><INPUT id=txtPwd style="WIDTH: 130px" 
-                  type=password name=txtPwd></TD>
-                <TD style="HEIGHT: 28px"><SPAN id=RequiredFieldValidator4 
-                  style="FONT-WEIGHT: bold; VISIBILITY: hidden; COLOR: white">请输入密码</SPAN></TD></TR>
-              <TR>
+                  type=password name="user_password"></TD>
+                <TD style="HEIGHT: 28px"><SPAN id="span_pwd" 
+                  style="FONT-WEIGHT: bold; display:none; COLOR: white">请输入密码</SPAN></TD></TR>
+              <!-- <TR>
                 <TD style="HEIGHT: 28px">验证码：</TD>
                 <TD style="HEIGHT: 28px"><INPUT id=txtcode 
                   style="WIDTH: 130px" name=txtcode></TD>
-                <TD style="HEIGHT: 28px">&nbsp;</TD></TR>
+                <TD style="HEIGHT: 28px">&nbsp;</TD></TR> -->
               <TR>
                 <TD style="HEIGHT: 18px"></TD>
                 <TD style="HEIGHT: 18px"></TD>
@@ -68,9 +86,8 @@ style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV
                 <TD></TD>
                 <TD><INPUT id=btn 
                   style="BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px" 
-                  onclick='javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions("btn", "", true, "", "", false, false))' 
-                  type=image src="images/login_button.gif" name=btn> 
-                  <a href="${pageContext.request.contextPath }/regist.jsp">注册用户</a>
+                  type=submit value="注册用户" name=btn> 
+                  
               </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
   <TR>
     <TD><IMG src="images/login_3.jpg" 
