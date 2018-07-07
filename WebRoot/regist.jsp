@@ -11,21 +11,40 @@ BODY {
 TD {
 	FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: 宋体
 }
+.error{color:#f00 !important;}
 </STYLE>
 <script src="js/jquery-1.11.3.min.js"></script>
-<srcipt>
+<script>
 	function checkCode(){
-		var user_id = $('#user_id').val();
-		var url = "${pageContext.request.contextPath}/user_checkCode.action";
-		var param = {"user_id":user_id};
-		$.post(url,param,function(data){
-			
-		});
+		var user_code = $('#user_code').val();
+		if(user_code.trim() == ""){
+			$("#span_code").addClass("error");
+			$("#span_code").html("用户名不能为空");
+		}else{
+			var url = "${pageContext.request.contextPath}/user_checkCode.action";
+			var param = {"user_code":user_code};
+			$.post(url,param,function(data){
+				if(data && data == "no"){
+					$("#span_code").removeClass("error");
+					$("#span_code").html("");
+				}else if(data && data == "yes"){
+					$("#span_code").addClass("error");
+					$("#span_code").html("用户已存在");
+				}
+			});
+		}
 	}
-</srcipt>
+	function checkForm(){
+		checkCode();
+		var errors = $(".error");
+		if(errors.size()>0){
+			return false;
+		}
+	}
+</script>
 <META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
 <BODY>
-<FORM id=form1 name=form1 action="${pageContext.request.contextPath }/user_regist.action" onsubmit="javascript:return WebForm_OnSubmit();" method=post>
+<FORM id=form1 name=form1 action="${pageContext.request.contextPath }/user_regist.action" onsubmit="return checkForm()" method=post>
 
 <DIV id=UpdatePanel1>
 <DIV id=div1 
@@ -58,7 +77,7 @@ style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV
                   style="WIDTH: 130px" name="user_name"></TD>
                 <TD style="HEIGHT: 28px" width=370><SPAN 
                   id="span_name" 
-                  style="FONT-WEIGHT: bold; display:none; COLOR: white">请输入姓名</SPAN></TD></TR>
+                  style="FONT-WEIGHT: bold; display:none;">请输入姓名</SPAN></TD></TR>
               <TR>
               <TR>
                 <TD style="HEIGHT: 28px" width=80>用户名：</TD>
@@ -66,7 +85,7 @@ style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV
                   style="WIDTH: 130px" name="user_code" onblur="checkCode()"></TD>
                 <TD style="HEIGHT: 28px" width=370><SPAN 
                   id="span_code" 
-                  style="FONT-WEIGHT: bold; display:none; COLOR: white">请输入登录名</SPAN></TD></TR>
+                  style="FONT-WEIGHT: bold;"></SPAN></TD></TR>
               <TR>
                 <TD style="HEIGHT: 28px">登录密码：</TD>
                 <TD style="HEIGHT: 28px"><INPUT id=txtPwd style="WIDTH: 130px" 

@@ -6,4 +6,8 @@ public interface UserService {
 
 	void save(User user);
 
+	User checkCode(String user_code);
+
+	User login(User user);
+
 }
