@@ -23,15 +23,25 @@
 		var param = {"dict_type_code":"006"};
 		$.post(url,param,function(data){
 			var level = $("#levelId");
+			var level_dict = "${model.level.dict_id}";
 			$(data).each(function(){
-				level.append("<option value="+this.dict_id+" >"+this.dict_item_name+"</option>");
+				if(this.dict_id == level_dict){
+					level.append("<option value="+this.dict_id+" selected >"+this.dict_item_name+"</option>");
+				}else{
+					level.append("<option value="+this.dict_id+" >"+this.dict_item_name+"</option>");
+				}
 			});
 		},"json")
 		var param1 = {"dict_type_code":"002"};
 		$.post(url,param1,function(data){
 			var source = $("#sourceId");
+			var source_dict = "${model.source.dict_id}";
 			$(data).each(function(){
-				source.append("<option value="+this.dict_id+" >"+this.dict_item_name+"</option>");
+				if(this.dict_id == source_dict){
+					source.append("<option value="+this.dict_id+" selected >"+this.dict_item_name+"</option>");
+				}else{
+					source.append("<option value="+this.dict_id+" >"+this.dict_item_name+"</option>");
+				}
 			});
 		},"json")
 	});
@@ -80,16 +90,16 @@
 												<TR>
 													<TD>客户名称：</TD>
 													<TD><INPUT class=textbox id=sChannel2
-														style="WIDTH: 80px" maxLength=50 name="custName"></TD>
+														style="WIDTH: 80px" maxLength=50 name="cust_name" value=${model.cust_name }></TD>
 													<td>　客户级别：</td>
 													<td>
-														<select name="" id="levelId">
+														<select name="level.dict_id" id="levelId">
 															<option value="">---请选择---</option>
 														</select>
 													</td>
 													<td>　客户来源：</td>
 													<td>
-														<select name="" id="sourceId">
+														<select name="source.dict_id" id="sourceId">
 															<option value="">---请选择---</option>
 														</select>
 													</td>
@@ -121,15 +131,15 @@
 												<TR
 													style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
 													<TD>${customer.cust_name }</TD>
-													<TD>${customer.level.dict_item_name }</TD>
-													<%--<TD>${customer.cust_source }</TD>--%>
+													<TD>${customer.level.dict_item_name }</TD> 
+													<TD>${customer.source.dict_item_name }</TD>
 													<TD>${customer.cust_linkman }</TD> 
 													<TD>${customer.cust_phone }</TD>
 													<TD>${customer.cust_mobile }</TD>
 													<TD>
 													<a href="${pageContext.request.contextPath }/customerServlet?method=edit&custId=${customer.cust_id}">修改</a>
 													&nbsp;&nbsp;
-													<a href="${pageContext.request.contextPath }/customerServlet?method=delete&custId=${customer.cust_id}">删除</a>
+													<a href="${pageContext.request.contextPath }/cust_delete.action?cust_id=${customer.cust_id}" onclick="return window.confirm('确认删除吗？')">删除</a>
 													</TD>
 												</TR>
 												

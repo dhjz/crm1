@@ -30,6 +30,9 @@ public class Customer {
 	private Dict source;
 	private Dict industry;
 	private Dict level;
+	
+	private String filepath;
+	
 	public Long getCust_id() {
 		return cust_id;
 	}
@@ -89,6 +92,12 @@ public class Customer {
 	}
 	public void setLevel(Dict level) {
 		this.level = level;
+	}
+	public String getFilepath() {
+		return filepath;
+	}
+	public void setFilepath(String filepath) {
+		this.filepath = filepath;
 	}
 	
 }

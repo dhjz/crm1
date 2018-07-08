@@ -9,6 +9,27 @@
 <LINK href="${pageContext.request.contextPath }/css/Style.css" type=text/css rel=stylesheet>
 <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css
 	rel=stylesheet>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.11.3.min.js"></script>
+<SCRIPT language=javascript>
+
+	$(function(){
+		var url = "${pageContext.request.contextPath}/dict_findByCode.action";
+		var param = {"dict_type_code":"006"};
+		$.post(url,param,function(data){
+			var level = $("#levelId");
+			$(data).each(function(){
+				level.append("<option value="+this.dict_id+" >"+this.dict_item_name+"</option>");
+			});
+		},"json")
+		var param1 = {"dict_type_code":"002"};
+		$.post(url,param1,function(data){
+			var source = $("#sourceId");
+			$(data).each(function(){
+				source.append("<option value="+this.dict_id+" >"+this.dict_item_name+"</option>");
+			});
+		},"json")
+	});
+</SCRIPT>
 
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
@@ -16,7 +37,7 @@
 <BODY>
 	<FORM id=form1 name=form1
 		action="${pageContext.request.contextPath }/cust_add.action"
-		method=post>
+		method=post enctype="multipart/form-data">
 		
 
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
@@ -55,19 +76,15 @@
 								<INPUT class=textbox id=sChannel2
 														style="WIDTH: 180px" maxLength=50 name="cust_name">
 								</td>
-								<td>客户级别 ：</td>
+								<td>　客户级别：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="cust_level">
+									<select name="level.dict_id" id="levelId"></select>
 								</td>
 							</TR>
-							
 							<TR>
-								
-								<td>信息来源 ：</td>
+								<td>　客户来源：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="cust_source">
+									<select name="source.dict_id" id="sourceId"></select>
 								</td>
 								<td>联系人：</td>
 								<td>
@@ -91,7 +108,7 @@
 								</td>
 							</TR>
 							
-							<!--  <TR>
+							 <TR>
 								<td>联系地址 ：</td>
 								<td>
 								<INPUT class=textbox id=sChannel2
@@ -109,12 +126,12 @@
 								<INPUT class=textbox id=sChannel2
 														style="WIDTH: 180px" maxLength=50 name="custFax">
 								</td>
-								<td>客户网址 ：</td>
+								<td>上传文件 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custWebsite">
+								<INPUT type="file" class=textbox id=sChannel2
+														style="WIDTH: 180px" maxLength=50 name="upload">
 								</td>
-							</TR>-->
+							</TR>
 							<tr>
 								<td rowspan=2>
 								<INPUT class=button id=sButton2 type=submit

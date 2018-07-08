@@ -4,16 +4,25 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+	<!-- 配置上传文件大小 struts.multipart.maxSize=2097152 -->
+	<constant name="struts.multipart.maxSize" value="20971520"></constant>
 	<package name="crm1" extends="struts-default" namespace="/">
 		<global-results>
-			<result name="login" type="redirect">login.jsp</result>
+			<result name="login" type="redirect">/login.jsp</result>
 		</global-results>
 	
 		<action name="user_*" class="userAction" method="{1}">
-			<result name="loginOK" type="redirect">index.jsp</result>
+			<result name="loginOK" type="redirect">/index.jsp</result>
 		</action>
 		<action name="cust_*" class="customerActon" method="{1}">
-			<result name ="page">jsp/customer/list.jsp</result>
+			<result name ="page">/jsp/customer/list.jsp</result>
+			<result name ="initAdd">/jsp/customer/add.jsp</result>
+			<result name ="add" type="redirectAction">cust_findByPage.action</result>
+			<result name ="delelte" type="redirectAction">cust_findByPage.action</result>
+			
+			<!-- <interceptor-ref name="defaultStack">
+				<param name="fileUpload.allowedExtensions">.jpg,.txt</param>
+			</interceptor-ref> -->
 		</action>
 		<action name="dict_*" class="dictAction" method="{1}">
 			

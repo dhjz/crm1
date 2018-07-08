@@ -41,4 +41,17 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 		return pageBean;
 	}
 
+	/**
+	 * 根据id查询客户
+	 */
+	@Override
+	public Customer findById(Long cust_id) {
+		return this.getHibernateTemplate().get(Customer.class, cust_id);
+	}
+
+	@Override
+	public void delete(Customer customer) {
+		this.getHibernateTemplate().delete(customer);
+	}
+
 }

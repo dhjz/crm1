@@ -56,8 +56,8 @@
 	<bean id="userDao" class="com.dhj.dao.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	<!-- 配置客户模块 -->
-	<bean id="customerActon" class="com.dhj.web.action.CustomerActon">
+	<!-- 配置客户模块  action都是多例的！！！！！-->
+	<bean id="customerActon" class="com.dhj.web.action.CustomerActon" scope="prototype">
 		<property name="customerService" ref="customerService"></property>
 	</bean>
 	<bean id="customerService" class="com.dhj.service.CustomerServiceImpl">
@@ -67,7 +67,7 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<!-- 配置字典模块 -->
-	<bean id="dictAction" class="com.dhj.web.action.DictAction">
+	<bean id="dictAction" class="com.dhj.web.action.DictAction" scope="prototype">
 		<property name="dictService" ref="dictService"></property>
 	</bean>
 	<bean id="dictService" class="com.dhj.service.DictServiceImpl">

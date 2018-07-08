@@ -11,4 +11,8 @@ public interface CustomerService {
 
 	PageBean<Customer> findByPage(Integer currPage, Integer pageSize, DetachedCriteria criteria);
 
+	Customer findById(Long cust_id);
+
+	void delete(Customer customer);
+
 }
