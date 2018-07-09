@@ -76,6 +76,16 @@
 	<bean id="dictDao" class="com.dhj.dao.DictDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<!-- 配置联系人模块 -->
+	<bean id="linkmanAction" class="com.dhj.web.action.LinkmanAction" scope="prototype">
+		<property name="linkmanService" ref="linkmanService"/>
+	</bean>
+	<bean id="linkmanService" class="com.dhj.service.LinkmanServiceImpl">
+		<property name="linkmanDao" ref="linkmanDao"/>
+	</bean>
+	<bean id="linkmanDao" class="com.dhj.dao.LinkmanDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 </beans>
 
 

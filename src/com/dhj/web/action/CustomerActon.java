@@ -60,7 +60,7 @@ public class CustomerActon extends ActionSupport implements ModelDriven<Customer
 		if (uploadFileName != null) {
 			String uuidname = UploadUtils.getUUIDName(uploadFileName);
 			// D:\\Program Files\\Apache Software Foundation\\Tomcat 8.5\\webapps\\upload
-			String path = "D:\\Program Files\\Apache Software Foundation\\Tomcat 8.5\\webapps\\upload\\";
+			String path = "E:\\Program Files\\Apache Software Foundation\\Tomcat 8.5\\webapps\\upload\\";
 			File file = new File(path+uuidname);
 			FileUtils.copyFile(upload, file);
 			customer.setFilepath(path+uuidname);
@@ -122,6 +122,32 @@ public class CustomerActon extends ActionSupport implements ModelDriven<Customer
 			file.delete();
 		}
 		return "delelte";
+	}
+	public String initUpdate(){
+		customer = customerService.findById(customer.getCust_id());
+		return "initUpdate";
+	}
+	
+	public String update() throws IOException{
+		//upload 是否为空，不为空，filepath是否有数据，有就删除，没有就上传文件更新到数据库，空就直接更新customer
+		if (uploadFileName != null) {
+			//上传了新的文件
+			String oldpath = customer.getFilepath();
+			if (oldpath != null && !oldpath.trim().isEmpty()) {
+				File f = new File(oldpath);
+				if (f.exists()) {
+					f.delete();
+				}
+			}
+			String uuidname = UploadUtils.getUUIDName(uploadFileName);
+			String path = "E:\\Program Files\\Apache Software Foundation\\Tomcat 8.5\\webapps\\upload\\";
+			File file = new File(path+uuidname);
+			FileUtils.copyFile(upload, file);
+			customer.setFilepath(path+uuidname);
+		}
+		customerService.update(customer);
+		
+		return "update";
 	}
 	
 

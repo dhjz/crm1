@@ -137,7 +137,7 @@
 													<TD>${customer.cust_phone }</TD>
 													<TD>${customer.cust_mobile }</TD>
 													<TD>
-													<a href="${pageContext.request.contextPath }/customerServlet?method=edit&custId=${customer.cust_id}">修改</a>
+													<a href="${pageContext.request.contextPath }/cust_initUpdate?cust_id=${customer.cust_id}">修改</a>
 													&nbsp;&nbsp;
 													<a href="${pageContext.request.contextPath }/cust_delete.action?cust_id=${customer.cust_id}" onclick="return window.confirm('确认删除吗？')">删除</a>
 													</TD>
@@ -156,11 +156,12 @@
 												style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
 												共[<B>${pageBean.totleCount}</B>]条记录,共[<B>${pageBean.totlePage}</B>]页
 												,每页显示
-												<!-- <select name="pageSize">
+												<select name="pageSize">
+													<option value="3"  <c:if test="${pageBean.pageSize==3 }">selected</c:if>   > 3</option>
+													<option value="5" <c:if test="${pageBean.pageSize==5 }">selected</c:if> >5 	</option>
+													<option value="10" <c:if test="${pageBean.pageSize==10 }">selected</c:if> >  10 	</option>
+												</select>
 												
-												<option value="15" <c:if test="${pageSize==1 }">selected</c:if>>1</option>
-												<option value="30" <c:if test="${pageSize==30 }">selected</c:if>>30</option>
-												</select> -->
 												条
 												<c:if test="${pageBean.currPage>1 }">
 												[<A href="javascript:to_page(${pageBean.currPage-1})">前一页</A>]

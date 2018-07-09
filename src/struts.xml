@@ -19,7 +19,8 @@
 			<result name ="initAdd">/jsp/customer/add.jsp</result>
 			<result name ="add" type="redirectAction">cust_findByPage.action</result>
 			<result name ="delelte" type="redirectAction">cust_findByPage.action</result>
-			
+			<result name ="initUpdate">/jsp/customer/edit.jsp</result>
+			<result name ="update" type="redirectAction">cust_findByPage.action</result>
 			<!-- <interceptor-ref name="defaultStack">
 				<param name="fileUpload.allowedExtensions">.jpg,.txt</param>
 			</interceptor-ref> -->

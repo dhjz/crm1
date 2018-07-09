@@ -9,16 +9,15 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 import com.dhj.domain.Customer;
 import com.dhj.domain.PageBean;
 
-public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao {
+public class CustomerDaoImpl extends BaseDaoImpl<Customer> implements CustomerDao {
 
 	/**
 	 * 添加客户
-	 */
+	
 	@Override
 	public void add(Customer customer) {
 		this.getHibernateTemplate().save(customer);
-	}
-
+	}*/
 	/**
 	 * 分页查询客户
 	 */
@@ -52,6 +51,14 @@ public class CustomerDaoImpl extends HibernateDaoSupport implements CustomerDao 
 	@Override
 	public void delete(Customer customer) {
 		this.getHibernateTemplate().delete(customer);
+	}
+
+	/**
+	 * 更新客户
+	 */
+	public void update(Customer customer) {
+		this.getHibernateTemplate().update(customer);
+		
 	}
 
 }

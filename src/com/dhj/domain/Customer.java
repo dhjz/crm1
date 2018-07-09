@@ -1,5 +1,8 @@
 package com.dhj.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Customer {
 	
 	/**
@@ -33,6 +36,7 @@ public class Customer {
 	
 	private String filepath;
 	
+	private Set<Linkman> linkmans = new HashSet<Linkman>();
 	public Long getCust_id() {
 		return cust_id;
 	}
