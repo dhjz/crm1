@@ -37,6 +37,7 @@
 				<value>com/dhj/domain/User.hbm.xml</value>
 				<value>com/dhj/domain/Customer.hbm.xml</value>
 				<value>com/dhj/domain/Dict.hbm.xml</value>
+				<value>com/dhj/domain/Linkman.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

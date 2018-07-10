@@ -2,6 +2,9 @@ package com.dhj.web.action;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.ServletActionContext;
@@ -12,6 +15,7 @@ import com.dhj.domain.Customer;
 import com.dhj.domain.Dict;
 import com.dhj.domain.PageBean;
 import com.dhj.service.CustomerService;
+import com.dhj.utils.FastJsonUtil;
 import com.dhj.utils.UploadUtils;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -150,5 +154,12 @@ public class CustomerActon extends ActionSupport implements ModelDriven<Customer
 		return "update";
 	}
 	
+	public String findAll(){
+		List<Customer> list = customerService.findAll();
+		String jsonString = FastJsonUtil.toJSONString(list);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		FastJsonUtil.write_json(response, jsonString);
+		return NONE;
+	}
 
 }

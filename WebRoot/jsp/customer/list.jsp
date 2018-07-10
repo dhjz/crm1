@@ -157,7 +157,7 @@
 												共[<B>${pageBean.totleCount}</B>]条记录,共[<B>${pageBean.totlePage}</B>]页
 												,每页显示
 												<select name="pageSize">
-													<option value="3"  <c:if test="${pageBean.pageSize==3 }">selected</c:if>   > 3</option>
+													<option value="3"  <c:if test="${pageBean.pageSize==3 }"> selected </c:if>   > 3 </option>
 													<option value="5" <c:if test="${pageBean.pageSize==5 }">selected</c:if> >5 	</option>
 													<option value="10" <c:if test="${pageBean.pageSize==10 }">selected</c:if> >  10 	</option>
 												</select>

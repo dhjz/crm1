@@ -15,7 +15,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	private Class clazz;
 	public  BaseDaoImpl(){
 		Class c = this.getClass();
-		Type type = c.getSuperclass();
+		Type type = c.getGenericSuperclass();
 		if (type instanceof ParameterizedType) {
 			ParameterizedType ptype = (ParameterizedType) type;
 			Type[] types = ptype.getActualTypeArguments();
@@ -61,6 +61,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T> {
 	 * 查询所有
 	 */
 	public List<T> findAll() {
+		System.out.println("1111111111111111111111111111111***********************"+clazz.getSimpleName());
 		return (List<T>) this.getHibernateTemplate().find("from "+clazz.getSimpleName());
 	}
 

@@ -1,5 +1,7 @@
 package com.dhj.service;
 
+import java.util.List;
+
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,6 +47,12 @@ public class CustomerServiceImpl implements CustomerService {
 	 */
 	public void update(Customer customer) {
 		customerDao.update(customer);
+	}
+	/**
+	 * 查询所有客户
+	 */
+	public List<Customer> findAll() {
+		return customerDao.findAll();
 	}
 	
 }
