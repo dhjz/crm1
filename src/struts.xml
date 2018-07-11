@@ -17,6 +17,10 @@
 	
 		<action name="user_*" class="userAction" method="{1}">
 			<result name="loginOK" type="redirect">/index.jsp</result>
+			<interceptor-ref name="userInterceptor">
+				<param name="excludeMethods">login,regist,checkCode</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
 		</action>
 		<action name="cust_*" class="customerActon" method="{1}">
 			<result name ="page">/jsp/customer/list.jsp</result>
