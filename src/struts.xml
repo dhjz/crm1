@@ -43,6 +43,11 @@
 			<interceptor-ref name="userInterceptor"></interceptor-ref>
 			<interceptor-ref name="defaultStack" />
 		</action>
+		<action name="visit_*" class="saleVisitAction" method="{1}">
+			<result name ="page">/jsp/visit/list.jsp</result>
+			<!-- <interceptor-ref name="userInterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack" /> -->
+		</action>
 	</package>
 
 </struts>

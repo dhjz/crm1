@@ -13,6 +13,12 @@
 	http://www.springframework.org/schema/tx 
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
+	<!-- 开启属性注解扫描 -->
+	<context:annotation-config />
+	<!-- 引入外部属性文件===============================
+	<context:property-placeholder location="classpath:jdbc.properties"/> 
+	<property name="driverClass" value="${jdbc.driverClass}"/>
+	-->
 	<!-- c3P0 连接池 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
@@ -38,6 +44,7 @@
 				<value>com/dhj/domain/Customer.hbm.xml</value>
 				<value>com/dhj/domain/Dict.hbm.xml</value>
 				<value>com/dhj/domain/Linkman.hbm.xml</value>
+				<value>com/dhj/domain/SaleVisit.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -86,6 +93,13 @@
 	</bean>
 	<bean id="linkmanDao" class="com.dhj.dao.LinkmanDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<!-- 配置用户拜访模块      action 多例！！！-->
+	<bean id="saleVisitAction" class="com.dhj.web.action.SaleVisitAction" scope="prototype"></bean>
+	<bean id="saleVisitService" class="com.dhj.service.SaleVisitServiceImpl"></bean>
+	<bean id="saleVisitDao" class="com.dhj.dao.SaleVisitDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 </beans>
 
